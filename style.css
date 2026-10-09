@@ -1,0 +1,421 @@
+/* ==========================================================================
+   SMART CAMPUS - Dark Mode Theme & Space Cursor Styling
+   ========================================================================== */
+
+:root {
+  --bg-primary: #0b0f19;
+  --bg-secondary: #111827;
+  --bg-tertiary: #1f2937;
+  --bg-card: rgba(17, 24, 39, 0.85);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-hover: rgba(6, 182, 212, 0.4);
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --accent-cyan: #06b6d4;
+  --accent-blue: #3b82f6;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  --glow-cyan: 0 0 20px rgba(6, 182, 212, 0.35);
+  --glow-blue: 0 0 20px rgba(59, 130, 246, 0.35);
+}
+
+/* Base Reset & Styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Skip Link for Accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  background: var(--accent-cyan);
+  color: #000;
+  padding: 8px 16px;
+  z-index: 1000;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 10px;
+}
+
+/* ==========================================================================
+   FUTURISTIC CYBER RETICLE CURSOR
+   ========================================================================== */
+#cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  margin-left: -19px;
+  margin-top: -19px;
+  border: 1.5px solid rgba(6, 182, 212, 0.75);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              margin 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease,
+              background-color 0.2s ease,
+              box-shadow 0.2s ease,
+              transform 0.08s ease-out;
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.45), inset 0 0 8px rgba(6, 182, 212, 0.2);
+}
+
+/* 4 Reticle Crosshair Ticks */
+.ring-tick {
+  position: absolute;
+  background-color: #06b6d4;
+  border-radius: 1px;
+  transition: background-color 0.2s ease;
+}
+.ring-tick-t { top: -4px; left: 50%; width: 1.5px; height: 4px; transform: translateX(-50%); }
+.ring-tick-b { bottom: -4px; left: 50%; width: 1.5px; height: 4px; transform: translateX(-50%); }
+.ring-tick-l { left: -4px; top: 50%; width: 4px; height: 1.5px; transform: translateY(-50%); }
+.ring-tick-r { right: -4px; top: 50%; width: 4px; height: 1.5px; transform: translateY(-50%); }
+
+/* Hovering State (Buttons, Links, Inputs) */
+#cursor-ring.cursor-hover {
+  width: 54px;
+  height: 54px;
+  margin-left: -27px;
+  margin-top: -27px;
+  border-color: #10b981;
+  background-color: rgba(6, 182, 212, 0.08);
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.65), inset 0 0 12px rgba(6, 182, 212, 0.3);
+  transform: rotate(45deg);
+}
+#cursor-ring.cursor-hover .ring-tick {
+  background-color: #10b981;
+}
+
+/* Mouse Down Active Pinch */
+#cursor-ring.cursor-active {
+  width: 26px;
+  height: 26px;
+  margin-left: -13px;
+  margin-top: -13px;
+  border-color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.25);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.8);
+}
+
+/* Inner Precision Micro Core Dot */
+#cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  margin-top: -3px;
+  background-color: #22d3ee;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100000;
+  box-shadow: 0 0 10px #22d3ee, 0 0 20px #3b82f6;
+  transition: transform 0.02s linear, background-color 0.2s ease;
+}
+
+/* Ambient Radial Light Follower */
+#cursor-light {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  margin-left: -150px;
+  margin-top: -150px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(59, 130, 246, 0.04) 50%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.1s ease-out;
+  mix-blend-mode: screen;
+}
+
+/* Click Burst Particle Wave */
+.cursor-click-ripple {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99990;
+  transform: translate(-50%, -50%) scale(0);
+  border: 2px solid #06b6d4;
+  animation: cursorRippleAnim 0.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes cursorRippleAnim {
+  0% { width: 10px; height: 10px; opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { width: 70px; height: 70px; opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* 3D Space Particle Canvas */
+#space-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+  transition: opacity 0.5s ease;
+}
+
+/* Glassmorphism Card Style */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.2);
+}
+
+.glass-nav {
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+}
+
+/* Focus States for Accessibility */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(6, 182, 212, 0.6); }
+}
+
+.glow-animation {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+/* Status Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-submitted { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+.badge-review { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+.badge-progress { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+.badge-resolved { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+.badge-emergency { background: rgba(244, 63, 94, 0.2); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.5); }
+
+/* QR Code Scanner Laser Animation */
+@keyframes qrLaserScan {
+  0% { top: 5%; opacity: 0.7; }
+  50% { top: 92%; opacity: 1; }
+  100% { top: 5%; opacity: 0.7; }
+}
+
+.qr-scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #06b6d4, #10b981, #06b6d4, transparent);
+  box-shadow: 0 0 16px #06b6d4, 0 0 28px #10b981;
+  animation: qrLaserScan 2s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   LIGHT MODE / THEME SYSTEM
+   ========================================================================== */
+html.light,
+html:not(.dark) {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
+  --bg-card: rgba(255, 255, 255, 0.94);
+  --border-color: rgba(203, 213, 225, 0.8);
+  --border-hover: rgba(6, 182, 212, 0.7);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --glow-cyan: 0 0 16px rgba(6, 182, 212, 0.25);
+  --glow-blue: 0 0 16px rgba(59, 130, 246, 0.25);
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.light body,
+html:not(.dark) body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Light Cards */
+html.light .glass-card,
+html:not(.dark) .glass-card {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(226, 232, 240, 0.9) !important;
+  color: #0f172a !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03) !important;
+}
+
+html.light .glass-card:hover,
+html:not(.dark) .glass-card:hover {
+  border-color: rgba(6, 182, 212, 0.6) !important;
+  box-shadow: 0 12px 30px -8px rgba(6, 182, 212, 0.15) !important;
+}
+
+/* Light Nav Header */
+html.light .glass-nav,
+html:not(.dark) .glass-nav {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom-color: rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Typography Overrides */
+html.light .text-white,
+html:not(.dark) .text-white {
+  color: #0f172a !important;
+}
+
+html.light .text-gray-100,
+html:not(.dark) .text-gray-100 {
+  color: #1e293b !important;
+}
+
+html.light .text-gray-200,
+html:not(.dark) .text-gray-200 {
+  color: #334155 !important;
+}
+
+html.light .text-gray-300,
+html.light .text-gray-400,
+html:not(.dark) .text-gray-300,
+html:not(.dark) .text-gray-400 {
+  color: #475569 !important;
+}
+
+/* Background Grays in Light Mode */
+html.light .bg-gray-950,
+html.light .bg-gray-900,
+html:not(.dark) .bg-gray-950,
+html:not(.dark) .bg-gray-900 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+html.light .bg-gray-900\/80,
+html.light .bg-gray-900\/90,
+html.light .bg-gray-950\/70,
+html.light .bg-gray-950\/80,
+html:not(.dark) .bg-gray-900\/80,
+html:not(.dark) .bg-gray-900\/90,
+html:not(.dark) .bg-gray-950\/70,
+html:not(.dark) .bg-gray-950\/80 {
+  background-color: rgba(248, 250, 252, 0.95) !important;
+}
+
+html.light .bg-gray-800,
+html:not(.dark) .bg-gray-800 {
+  background-color: #f1f5f9 !important;
+  color: #1e293b !important;
+}
+
+html.light .border-gray-800,
+html.light .border-gray-700,
+html:not(.dark) .border-gray-800,
+html:not(.dark) .border-gray-700 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Light Mode Input Elements */
+html.light input,
+html.light textarea,
+html.light select,
+html:not(.dark) input,
+html:not(.dark) textarea,
+html:not(.dark) select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.light input::placeholder,
+html:not(.dark) input::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Light Mode Cursor Appearance */
+html.light #cursor-ring,
+html:not(.dark) #cursor-ring {
+  border-color: rgba(2, 132, 199, 0.85);
+  box-shadow: 0 0 14px rgba(2, 132, 199, 0.4), inset 0 0 6px rgba(2, 132, 199, 0.15);
+}
+html.light .ring-tick,
+html:not(.dark) .ring-tick {
+  background-color: #0284c7;
+}
+html.light #cursor-dot,
+html:not(.dark) #cursor-dot {
+  background-color: #0284c7;
+  box-shadow: 0 0 8px #0284c7;
+}
+html.light #cursor-light,
+html:not(.dark) #cursor-light {
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.08) 0%, rgba(99, 102, 241, 0.02) 50%, transparent 70%);
+  mix-blend-mode: multiply;
+}
+
+/* Light Mode Canvas Opacity */
+html.light #space-canvas,
+html:not(.dark) #space-canvas {
+  opacity: 0.65;
+}
+
+

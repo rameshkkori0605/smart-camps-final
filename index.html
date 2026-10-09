@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAPTHAGIRI NPS UNIVERSITY — Smart Campus Platform</title>
+  <meta name="description" content="Official Smart Campus Platform for Sapthagiri NPS University, Bengaluru. Centralized portal for Student, Staff, Tech Team, and Administration.">
+  <meta name="theme-color" content="#0b0f19">
+  <meta property="og:title" content="SAPTHAGIRI NPS UNIVERSITY — Smart Campus Platform">
+  <meta property="og:description" content="AI-Powered Smart Campus Platform for Sapthagiri NPS University. Role-based access, Digital ID, Fee ledger, dynamic QR attendance.">
+  <meta property="og:type" content="website">
+
+  <!-- Network & CDN Optimization Resource Hints (Efficiency Criteria) -->
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cyan: '#06b6d4',
+              blue: '#3b82f6',
+              dark: '#0b0f19'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Three.js 3D Graphics Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Custom Dark Mode & Space Cursor CSS (Dual-Path Fallback) -->
+  <link rel="stylesheet" href="css/style.css" onerror="this.onerror=null;this.href='style.css';">
+
+  <!-- Universal Image Fallback for assets/ vs root directory -->
+  <script>
+    window.addEventListener('error', function(e) {
+      if (e.target && e.target.tagName === 'IMG') {
+        var src = e.target.getAttribute('src');
+        if (src && src.startsWith('assets/')) {
+          e.target.src = src.replace('assets/', '');
+        }
+      }
+    }, true);
+  </script>
+
+  <!-- Early Theme Initializer -->
+  <script>
+    (function() {
+      try {
+        const saved = localStorage.getItem('snpsu_theme') || 'dark';
+        if (saved === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        } else {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="bg-[#0b0f19] text-gray-100 min-h-screen selection:bg-cyan-500 selection:text-black">
+
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- 3D Space Particle Canvas (Three.js WebGL) -->
+  <canvas id="space-canvas"></canvas>
+
+  <!-- Interactive Futuristic Cyber Reticle Cursor -->
+  <div id="cursor-light"></div>
+  <div id="cursor-ring">
+    <div class="ring-tick ring-tick-t"></div>
+    <div class="ring-tick ring-tick-r"></div>
+    <div class="ring-tick ring-tick-b"></div>
+    <div class="ring-tick ring-tick-l"></div>
+  </div>
+  <div id="cursor-dot"></div>
+
+  <!-- Main Accessible App Landmark -->
+  <main id="main-content" role="main" class="relative z-10 w-full min-h-screen">
+    <div id="app">
+      <div class="min-h-screen flex items-center justify-center p-8 text-center text-cyan-400 font-bold">
+        <div class="space-y-4">
+          <div class="w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p class="text-sm tracking-wider uppercase">Loading Sapthagiri NPS University Platform...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Global Environment Script Configuration Placeholder -->
+  <script>
+    window.ENV = {
+      GOOGLE_MAPS_API_KEY: "" // Set your API key here or leave blank for automatic 3D Fallback Map
+    };
+  </script>
+
+  <!-- Main Application Script Bundle (Automatic Dual-Path Loader for js/bundle.js and bundle.js) -->
+  <script>
+    (function() {
+      function loadScript(src, fallback) {
+        var s = document.createElement('script');
+        s.src = src;
+        s.onerror = function() {
+          if (fallback) {
+            console.warn('Could not load ' + src + ', falling back to ' + fallback);
+            loadScript(fallback, null);
+          } else {
+            console.error('Failed to load application script: ' + src);
+          }
+        };
+        document.body.appendChild(s);
+      }
+      loadScript('js/bundle.js', 'bundle.js');
+    })();
+  </script>
+</body>
+</html>
